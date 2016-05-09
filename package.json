@@ -1,0 +1,27 @@
+{
+  "name": "chattr",
+  "version": "0.0.1",
+  "description": "A simple chatting application using a node server",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrmeza514/Chattr.git"
+  },
+  "keywords": [
+    "Node",
+    "Chat"
+  ],
+  "author": "Juan Meza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrmeza514/Chattr/issues"
+  },
+  "homepage": "https://github.com/jrmeza514/Chattr#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
