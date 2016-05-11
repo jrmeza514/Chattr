@@ -13,7 +13,7 @@ var Chattr = function () {
   var SERVER = {
     connected: false,
     protocol: 'http://',
-    host: 'localhost',
+    host: '10.26.134.157',
     port: 8000
   };
 
@@ -189,7 +189,8 @@ var Chattr = function () {
     /*
       Set the element's innerText to the username and message data
     */
-    chatItem.innerText = message.username + ": " + message.data;
+    chatItem.innerText = message.username + ": \n" + message.data;
+
     /*
       If the username in the message object matches the active username,
       identify message as .own_message for styling purposes
