@@ -10,8 +10,8 @@ let Chattr = (() => {
   */
   const SERVER = {
     connected: false,
-    protocol:'https://',
-    host:'chattr-node-js.herokuapp.com',
+    protocol:'http://',
+    host:'$__host__',
     port: '$__port__'
   };
 
