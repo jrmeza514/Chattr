@@ -1,10 +1,38 @@
 let http = require('http');
 let express = require('express');
 let io = require('socket.io');
-
+let fs = require('fs');
+let dns = require('dns');
+let os = require('os');
 let app = express();
 let server = http.createServer(app);
 let socket = io( server );
+
+
+/* Find Host IP and write it to the client js */
+dns.lookup( os.hostname() ,  ( err , address , fam ) => {
+  console.log(address);
+  /* Read the Client.js file */
+  let filename =  __dirname + '/dist/js/client.js';
+  let clientJs = fs.readFile( filename , ( err , data ) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    /* Replace the host placeholder with an actual IP Address */
+    let result = data.toString().replace("$__host__", address );
+
+    /*
+      Rewrite the file wth the replacement result.
+
+      Note that the clientjs file in the dist folder is compiled from the
+      dev folder so rewriting this file has no side effects
+    */
+    fs.writeFile( filename , result , (err) => {
+      if (err) throw err;
+    });
+  });
+});
 
 /*
   Make the Server User the files in the distribution
@@ -17,8 +45,9 @@ app.use( express.static( __dirname + "/dist/") );
   dist folder
 */
 app.get('/', function( req, res ){
-  res.sendFile( __dirname + "/dist/index.html" );
+  fs.sendFile(__dirname + "/dist/index.html");
 });
+
 
 /*
   Server Variables

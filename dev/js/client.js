@@ -11,7 +11,7 @@ let Chattr = (() => {
   const SERVER = {
     connected: false,
     protocol:'http://',
-    host:'10.26.134.157',
+    host:'$__host__',
     port: 8000
   };
 

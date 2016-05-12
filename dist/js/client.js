@@ -13,7 +13,7 @@ var Chattr = function () {
   var SERVER = {
     connected: false,
     protocol: 'http://',
-    host: '10.26.134.157',
+    host: '192.168.29.230',
     port: 8000
   };
 
