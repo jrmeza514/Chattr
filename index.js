@@ -1,32 +1,32 @@
-let http = require('http');
-let express = require('express');
-let io = require('socket.io');
-let fs = require('fs');
-let dns = require('dns');
-let os = require('os');
-let app = express();
-let server = http.createServer(app);
-let socket = io( server );
+var http = require('http');
+var express = require('express');
+var io = require('socket.io');
+var fs = require('fs');
+var dns = require('dns');
+var os = require('os');
+var app = express();
+var server = http.createServer(app);
+var socket = io( server );
 
 /*
   Feel Free to Change the PORT and all other files will automatically change
 */
-const PORT = process.env.PORT || 8000;
+var PORT = process.env.PORT || 8000;
 
 /* Find Host IP and write it to the client js */
-dns.lookup( os.hostname() ,  ( err , address , fam ) => {
+dns.lookup( os.hostname() ,  function( err , address , fam ){
 
-  console.log(`Listeneing on http://${address}:${PORT}`);
+  console.log("Listeneing on http://" + address);
 
   /* Read the Client.js file */
-  let filename =  __dirname + '/dist/js/client.js';
-  let clientJs = fs.readFile( filename , ( err , data ) => {
+  var filename =  __dirname + '/dist/js/client.js';
+  var clientJs = fs.readFile( filename , function( err , data ){
     if (err) {
       console.log(err);
       return;
     }
     /* Replace the host and port placeholders with an actual IP Address and port */
-    let result = data.toString().replace("$__host__", address ).replace('$__port__', `${PORT}` );
+    var result = data.toString().replace("$__host__", address ).replace('$__port__', '' + PORT );
 
     /*
       Rewrite the file wth the replacement result.
@@ -34,7 +34,7 @@ dns.lookup( os.hostname() ,  ( err , address , fam ) => {
       Note that the clientjs file in the dist folder is compiled from the
       dev folder so rewriting this file has no side effects
     */
-    fs.writeFile( filename , result , (err) => {
+    fs.writeFile( filename , result , function (err){
       if (err) throw err;
     });
   });
@@ -58,9 +58,9 @@ app.get('/', function( req, res ){
 /*
   Server Variables
 */
-let users = [];
-let chattrBuffer = [];
-let chattrMaxBuffer = 50;
+var users = [];
+var chattrBuffer = [];
+var chattrMaxBuffer = 50;
 
 /*
     listen for when there is a new connection to the server
@@ -95,8 +95,8 @@ socket.on('connection', function( client ){
   client.on('message', function( message ){
     // Check if we have reached the chattrBuffer limit and remove the first message
     if ( chattrBuffer.length === chattrMaxBuffer ) {
-      let deletedMessage = chattrBuffer.shift();
-      console.log( "deleted: " + JSON.stringify( deletedMessage ) );
+      var devaredMessage = chattrBuffer.shift();
+      console.log( "devared: " + JSON.stringify( devaredMessage ) );
     }
     // Add message to the buffer
     chattrBuffer.push( message );
@@ -112,7 +112,7 @@ socket.on('connection', function( client ){
 
   client.on('disconnect', function(){
       // Remove user from the active users collection
-      let index = users.indexOf( client.username );
+      var index = users.indexOf( client.username );
       if ( index > -1 ) {
         users.splice( index , 1 );
       }
