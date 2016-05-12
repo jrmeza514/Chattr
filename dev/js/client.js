@@ -193,11 +193,18 @@ let Chattr = (() => {
       Create a new element for the chatItem
     */
     let chatItem = document.createElement('div');
-    /*
-      Set the element's innerText to the username and message data
-    */
-    chatItem.innerText = message.username + ": \n" + message.data;
 
+    let chatItem__header = document.createElement('div');
+    chatItem__header.classList.add('chatItem__header');
+    chatItem__header.innerText = `${message.username}:`;
+
+    chatItem.appendChild( chatItem__header );
+
+    let chatItem__message = document.createElement('div');
+    chatItem__message.classList.add('chatItem__message');
+    chatItem__message.innerText = message.data;
+
+    chatItem.appendChild( chatItem__message );
     /*
       If the username in the message object matches the active username,
       identify message as .own_message for styling purposes
