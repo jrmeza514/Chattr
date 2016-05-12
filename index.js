@@ -8,10 +8,16 @@ let app = express();
 let server = http.createServer(app);
 let socket = io( server );
 
+/*
+  Feel Free to Change the PORT and all other files will automatically change
+*/
+const PORT = process.env.PORT || 8000;
 
 /* Find Host IP and write it to the client js */
 dns.lookup( os.hostname() ,  ( err , address , fam ) => {
-  console.log(address);
+
+  console.log(`Listeneing on http://${address}:${PORT}`);
+
   /* Read the Client.js file */
   let filename =  __dirname + '/dist/js/client.js';
   let clientJs = fs.readFile( filename , ( err , data ) => {
@@ -19,8 +25,8 @@ dns.lookup( os.hostname() ,  ( err , address , fam ) => {
       console.log(err);
       return;
     }
-    /* Replace the host placeholder with an actual IP Address */
-    let result = data.toString().replace("$__host__", address );
+    /* Replace the host and port placeholders with an actual IP Address and port */
+    let result = data.toString().replace("$__host__", address ).replace('$__port__', `${PORT}` );
 
     /*
       Rewrite the file wth the replacement result.
@@ -120,4 +126,4 @@ socket.on('connection', function( client ){
 
 });
 
-server.listen( 8000 );
+server.listen( PORT );

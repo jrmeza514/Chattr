@@ -12,7 +12,7 @@ let Chattr = (() => {
     connected: false,
     protocol:'http://',
     host:'$__host__',
-    port: 8000
+    port: '$__port__'
   };
 
   // socket
