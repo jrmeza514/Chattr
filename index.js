@@ -45,7 +45,7 @@ app.use( express.static( __dirname + "/dist/") );
   dist folder
 */
 app.get('/', function( req, res ){
-  fs.sendFile(__dirname + "/dist/index.html");
+  res.sendFile(__dirname + "/dist/index.html");
 });
 
 
