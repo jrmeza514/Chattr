@@ -10,7 +10,7 @@ let Chattr = (() => {
   */
   const SERVER = {
     connected: false,
-    protocol:'http://',
+    protocol:'https://',
     host:'$__host__',
     port: '$__port__'
   };

@@ -16,7 +16,7 @@ var PORT = process.env.PORT || 8000;
 /* Find Host IP and write it to the client js */
 dns.lookup( os.hostname() ,  function( err , address , fam ){
 
-  console.log("Listeneing on http://" + address);
+  console.log("Listeneing on http://" + address + ':' + PORT );
 
   /* Read the Client.js file */
   var filename =  __dirname + '/dist/js/client.js';
