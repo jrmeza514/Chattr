@@ -15,7 +15,7 @@ let Chattr = (() => {
     port: '$__port__'
   };
 
-  SERVER.url = "https://chattr-node-js.herokuapp.com";
+  SERVER.url = window.location.href;
   // socket
   let socket = null;
   let SOCKET_CALLBACKS = {};
