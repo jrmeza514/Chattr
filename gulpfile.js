@@ -29,3 +29,9 @@ gulp.task('sass', () => {
       .pipe( sass() )
       .pipe( gulp.dest('./dist/css/') );
 });
+
+gulp.task('watch', function(){
+  gulp.watch('./dev/sass/main.scss', ['sass']);
+  gulp.watch('./dev/*.jade', ['jade']);
+  gulp.watch('./dev/js/client.js', ['babel']);
+});
