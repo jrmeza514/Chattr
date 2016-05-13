@@ -17,7 +17,6 @@ var PORT = process.env.PORT || 8000;
 dns.lookup( os.hostname() ,  function( err , address , fam ){
 
   console.log("Listeneing on http://" + address + ':' + PORT );
-  console.log(os.hostname());
 
   /* Read the Client.js file */
   var filename =  __dirname + '/dist/js/client.js';

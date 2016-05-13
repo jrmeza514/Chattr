@@ -15,9 +15,7 @@ let Chattr = (() => {
     port: '$__port__'
   };
 
-  if ( SERVER.host === "172.18.212.54") {
-    SERVER.host = "chattr-node-js.herokuapp.com";
-  }
+  SERVER.url = "https://chattr-node-js.herokuapp.com";
   // socket
   let socket = null;
   let SOCKET_CALLBACKS = {};
@@ -85,7 +83,7 @@ let Chattr = (() => {
     /*
       Create a new socket to connect to the server
     */
-    socket = io.connect( SERVER.protocol + SERVER.host + ':' + SERVER.port );
+    socket = io.connect( SERVER.url );
     /*
       Add the event listeners to the cosket
     */
