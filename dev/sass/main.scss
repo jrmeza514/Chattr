@@ -1,3 +1,10 @@
+// Color Definitions
+$pink : #FF4081;
+$green: #009688;
+$self_message: rgba(255, 0, 0, 0.5);
+$other_message: rgba(0, 0, 0, 0.2);
+
+
 html, body{
   margin: 0;
   padding: 0;
@@ -27,35 +34,26 @@ button{
   display: flex;
   box-sizing: border-box;
   width: 100%;
+
+  input[type='text'], button{
+    font-size: 1.2em;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 2px;
+    flex-basis: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    flex-grow: 1;
+  }
+  button{
+    color: white;
+    background-color: $pink;
+
+  }
 }
-
-.header input[type='text'], .header button{
-  font-size: 1.2em;
-  padding: 10px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 2px;
-  flex-basis: 100%;
-  width: 100%;
-  outline: none;
-  border: none;
-}
-
-.header input[type="text"]{
-  flex-grow: 3;
-}
-.header button{
-  flex-grow: 3;
-}
- .header button{
-   color: white;
-   background-color: #FF4081;
-
- }
-
-
-
 .chatViewer{
   background-color: white;
   width: 100%;
@@ -67,13 +65,13 @@ button{
   .chatItem{
     padding: 5px;
     box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: $other_message;
     margin: 5px;
     box-sizing: border-box;
   }
 
   .chatItem.own_message{
-    background-color: rgba(255, 0, 0, 0.5);;
+    background-color: $self_message;
   }
 }
 
@@ -96,7 +94,7 @@ button{
 
 #chatboxSend{
   color: white;
-  background-color: #FF4081;
+  background-color: $pink;
   width: 100%;
   font-size: 1.2em;
   border: none;
