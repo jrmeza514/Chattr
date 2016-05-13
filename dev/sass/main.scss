@@ -7,6 +7,9 @@ html, body{
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
+button{
+  cursor: pointer;
+}
 
 .chattr{
   padding: 10px;
@@ -35,6 +38,8 @@ input:-webkit-autofill {
   border-radius: 2px;
   flex-basis: 100%;
   width: 100%;
+  outline: none;
+  border: none;
 }
 
 .header input[type="text"]{
@@ -83,6 +88,8 @@ input:-webkit-autofill {
   border-radius: 2px;
   resize: none;
   font-size: 1.2em;
+  padding: 8px;
+  outline: none;
 }
 
 
@@ -95,4 +102,5 @@ input:-webkit-autofill {
   border: none;
   border-radius: 2px;
   padding: 8px;
+  outline: none;
 }
