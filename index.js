@@ -2,43 +2,12 @@ var http = require('http');
 var express = require('express');
 var io = require('socket.io');
 var fs = require('fs');
-var dns = require('dns');
-var os = require('os');
 var app = express();
 var server = http.createServer(app);
 var socket = io( server );
 
-/*
-  Feel Free to Change the PORT and all other files will automatically change
-*/
 var PORT = process.env.PORT || 8000;
 
-/* Find Host IP and write it to the client js */
-dns.lookup( os.hostname() ,  function( err , address , fam ){
-
-  console.log("Listeneing on http://" + address + ':' + PORT );
-
-  /* Read the Client.js file */
-  var filename =  __dirname + '/dist/js/client.js';
-  var clientJs = fs.readFile( filename , function( err , data ){
-    if (err) {
-      console.log(err);
-      return;
-    }
-    /* Replace the host and port placeholders with an actual IP Address and port */
-    var result = data.toString().replace("$__host__", address ).replace('$__port__', '' + PORT );
-
-    /*
-      Rewrite the file wth the replacement result.
-
-      Note that the clientjs file in the dist folder is compiled from the
-      dev folder so rewriting this file has no side effects
-    */
-    fs.writeFile( filename , result , function (err){
-      if (err) throw err;
-    });
-  });
-});
 
 /*
   Make the Server User the files in the distribution
@@ -51,9 +20,8 @@ app.use( express.static( __dirname + "/dist/") );
   dist folder
 */
 app.get('/', function( req, res ){
-  res.sendFile(__dirname + "/dist/index.html");
+  res.sendFile( __dirname + "/dist/index.html" );
 });
-
 
 /*
   Server Variables

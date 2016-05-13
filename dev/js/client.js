@@ -1,4 +1,4 @@
-let Chattr = (() => {
+let Chattr = ( () => {
   /*
     CHAT_MESSAGES is the local cache for the messages broadcasted by the server.
     There is no limit specified for local chat buffer
@@ -10,12 +10,9 @@ let Chattr = (() => {
   */
   const SERVER = {
     connected: false,
-    protocol:'http://',
-    host:'$__host__',
-    port: '$__port__'
+    url: window.location.href
   };
 
-  SERVER.url = window.location.href;
   // socket
   let socket = null;
   let SOCKET_CALLBACKS = {};
