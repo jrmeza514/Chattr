@@ -1,6 +1,6 @@
 // Color Definitions
-$pink : #FF4081;
-$green: #009688;
+$accent : #FF4081;
+$main: #009688;
 $self_message: #3F51B5;
 $other_message: #607D8B;
 $message_color: white;
@@ -9,7 +9,7 @@ $user_hover_color: #3F51B5;
 html, body{
   margin: 0;
   padding: 0;
-  background-color: #009688;
+  background-color: $main;
   height: 100%;
   font-family: Arial;
 }
@@ -19,6 +19,13 @@ input:-webkit-autofill {
 }
 button{
   cursor: pointer;
+  color: white;
+  background-color: $accent;
+  transition: all 0.25s cubic-bezier( .42 , 0, .58, 1 );
+
+  &:hover{
+    background-color: #F50057;
+  }
 }
 
 .userList{
@@ -31,7 +38,7 @@ button{
     font-size: 1.4em;
     padding: 10px;
     text-align: center;
-    background-color: $pink;
+    background-color: $accent;
     color: white;
   }
 
@@ -87,11 +94,6 @@ button{
     border: none;
     flex-grow: 1;
   }
-  button{
-    color: white;
-    background-color: $pink;
-
-  }
 }
 .chatViewer{
   background-color: white;
@@ -146,8 +148,6 @@ button{
 
 
 #chatboxSend{
-  color: white;
-  background-color: $pink;
   width: 100%;
   font-size: 1.2em;
   border: none;
