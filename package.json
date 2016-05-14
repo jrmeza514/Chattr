@@ -1,6 +1,6 @@
 {
   "name": "chattr",
-  "version": "0.0.1",
+  "version": "0.5.0",
   "description": "A simple chatting application using a node server",
   "main": "index.js",
   "scripts": {
