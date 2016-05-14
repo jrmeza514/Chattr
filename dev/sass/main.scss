@@ -71,6 +71,17 @@ button{
     color: $message_color;
     font-size: 0.8em;
     letter-spacing: 1px;
+
+    .chatItem__header{
+      font-size: 1.25em;
+      padding: 5px 0;
+
+    }
+
+    .chatItem__message{
+
+    }
+
   }
 
   .chatItem.own_message{
