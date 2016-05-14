@@ -1,14 +1,16 @@
 # Chattr
-Simple Node Chat Application
+Node Realtime Chat Server powered by: [Node.js][node] and Socket.io
+### Demo: https://chattr-node-js.herokuapp.com/
+This demo is powered by the Heroku platform. Please note that this demo is running on a free Server that needs to sleep 6 hours every day so it might not always be available.
+## Get Started:
 
-To get started after cloning this repository open the command line cd
-into the repository directory and run the following commands:
-
-### Install all project dependencies specified in the package.json
+#### Install all project dependencies specified in the package.json:
 ```sh
   npm install
 ```
-### Compile files and start Server
+#### Compile files and start Server:
 ```sh
   npm start
 ```
+
+[node]: http://nodejs.org
