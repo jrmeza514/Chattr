@@ -10,12 +10,17 @@ html
     script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js")
     script(src="js/client.js", async)
   body
-    div.chattr
-      div.header
-        input#username(type="text", name="username")
-        button#connect Connect
-      div.chatViewer
-        div#chatList
-      div.create
-        textarea#chatbox(rows='8', cols='40', disabled)
-        button#chatboxSend(disabled) Send
+    div.userList
+      div.userList__header Active Users
+      div#userList
+
+    div.wrapper
+      div.chattr
+        div.header
+          input#username(type="text", name="username")
+          button#connect Connect
+        div.chatViewer
+          div#chatList
+        div.create
+          textarea#chatbox(rows='8', cols='40', disabled)
+          button#chatboxSend(disabled) Send

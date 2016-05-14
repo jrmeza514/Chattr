@@ -54,6 +54,16 @@ let Chattr = ( () => {
     socket.emit('joined', username );
   };
 
+  SOCKET_CALLBACKS.onRosterUpdate = ( roster ) => {
+    UI_USERLIST.innerHTML = "";
+    roster.forEach( ( user ) => {
+      let userListEl = document.createElement('div');
+      userListEl.classList.add('user');
+      userListEl.innerText = user;
+      UI_USERLIST.appendChild( userListEl );
+    });
+
+  };
 
   /*
     Initialize all UI COMPONENTS into constants for later use
@@ -63,7 +73,7 @@ let Chattr = ( () => {
   const UI_CHATBOX = document.getElementById('chatbox');
   const UI_CHATBOX_SEND = document.getElementById('chatboxSend');
   const UI_CHATLIST = document.getElementById('chatList');
-
+  const UI_USERLIST = document.getElementById('userList');
 
 
   /*
@@ -84,9 +94,10 @@ let Chattr = ( () => {
     /*
       Add the event listeners to the cosket
     */
-    socket.on('connected', SOCKET_CALLBACKS.onConnected );
+    socket.on( 'connected', SOCKET_CALLBACKS.onConnected );
     socket.on( 'loadChat' , SOCKET_CALLBACKS.onLoadChat );
     socket.on( 'message' , SOCKET_CALLBACKS.onMessage );
+    socket.on( 'roster_update', SOCKET_CALLBACKS.onRosterUpdate )
 
     /*
       Disable the username textfield, set the connection button to
