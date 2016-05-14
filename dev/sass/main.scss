@@ -1,9 +1,9 @@
 // Color Definitions
 $pink : #FF4081;
 $green: #009688;
-$self_message: rgba(255, 0, 0, 0.5);
-$other_message: rgba(0, 0, 0, 0.2);
-
+$self_message: #3F51B5;
+$other_message: #607D8B;
+$message_color: white;
 
 html, body{
   margin: 0;
@@ -68,6 +68,9 @@ button{
     background-color: $other_message;
     margin: 5px;
     box-sizing: border-box;
+    color: $message_color;
+    font-size: 0.8em;
+    letter-spacing: 1px;
   }
 
   .chatItem.own_message{

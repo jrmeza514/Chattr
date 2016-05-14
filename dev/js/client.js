@@ -156,6 +156,11 @@ let Chattr = ( () => {
       username: username,
       data: message
     });
+
+    /*
+      Clear The Message Box
+    */
+    UI_CHATBOX.value = "";
   };
 
 
