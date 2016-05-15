@@ -1,7 +1,6 @@
 var http = require('http');
 var express = require('express');
 var io = require('socket.io');
-var fs = require('fs');
 var app = express();
 var server = http.createServer(app);
 var socket = io( server );
