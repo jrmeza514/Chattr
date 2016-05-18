@@ -15,10 +15,6 @@ gulp.task('babel', () => {
 
 gulp.task('jade', function() {
 
-  var YOUR_LOCALS = {
-
-  };
-
   gulp.src('./dev/*.jade')
     .pipe(jade({
       pretty: true
