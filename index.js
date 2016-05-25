@@ -14,14 +14,11 @@ var PORT = process.env.PORT || 8000;
 */
 app.use( express.static( __dirname + "/dist/") );
 
+
 /*
   Route The Root of the server the index.html file in the
   dist folder
 */
-app.get('/', function( req, res ){
-  res.sendFile( __dirname + "/dist/index.html" );
-});
-
 /*
   Server Variables
 */
