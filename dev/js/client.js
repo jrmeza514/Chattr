@@ -14,7 +14,7 @@ let Chattr = ( () => {
   };
 
   // Workaround only for the purpose of browser-sync
-  if (SERVER.url.indexOf("localhost")) {
+  if (SERVER.url.indexOf("localhost") != -1) {
     SERVER.url = "http://localhost:8000";
   }
 
