@@ -1,50 +1,54 @@
-const gulp = require('gulp');
+const {series, src, dest, watch} = require('gulp');
 const babel = require('gulp-babel');
 const jade = require('gulp-jade');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const browserSync = require('browser-sync');
 
-gulp.task('default', ['babel', 'jade', 'sass']);
 
-gulp.task('babel', () => {
-  return gulp.src("dev/js/client.js")
+
+const babelTask = () => {
+  return src("dev/js/client.js")
          .pipe( babel() )
-         .pipe(gulp.dest('dist/js/'))
+         .pipe( dest('dist/js/'))
          .pipe( browserSync.stream() );
-});
+};
 
-gulp.task('jade', function() {
+const jadeTask = () => {
+  return src('./dev/*.jade')
+          .pipe(jade({
+            pretty: true
+          }))
+          .pipe(dest('./dist/'))
+          .pipe(browserSync.stream());
+}
 
-  gulp.src('./dev/*.jade')
-    .pipe(jade({
-      pretty: true
-    }))
-    .pipe(gulp.dest('./dist/'))
-    .pipe( browserSync.stream() );
-});
-
-gulp.task('sass', () => {
-  gulp.src('./dev/sass/main.scss')
-      .pipe( sass() )
-      .pipe( gulp.dest('./dist/css/') )
+const sassTask =  () => {
+  return src('./dev/sass/main.scss')
+      .pipe(sass().on('error', sass.logError))
+      .pipe( dest('./dist/css/') )
       .pipe( browserSync.stream() );
-});
+}
 
 /*
   Initialize browser-sync
 */
 
-gulp.task('syncInit', () => {
+const syncInit = () => {
   browserSync.init({
     server: './dist',
     logFileChanges: false
   });
-});
+};
 
-gulp.task('sync', ['syncInit', 'watch']);
+const watchTask = () => {
+  watch('./dev/sass/main.scss', ['sass']);
+  watch('./dev/*.jade', ['jade']);
+  watch('./dev/js/client.js', ['babel']);
+}
 
-gulp.task('watch', function(){
-  gulp.watch('./dev/sass/main.scss', ['sass']);
-  gulp.watch('./dev/*.jade', ['jade']);
-  gulp.watch('./dev/js/client.js', ['babel']);
-});
+const syncTask = series(syncInit, watchTask)
+
+
+// gulp.task('default', ['babel', 'jade', 'sass']);
+exports.sync = syncTask
+exports.default = series(babelTask, jadeTask, sassTask)
